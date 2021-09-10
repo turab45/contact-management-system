@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}"></title>
+</head>
+<body>
+
+	<section>
+		<div class="container"
+			style="width: 32% !important;">
+			<div class="login-form mt-5">
+			
+				<h1 class="text-center mb-5" style="color:#003153">Login</h1>
+				
+				<div th:if="${param.error}" class="alert alert-danger">
+					Invalid username and password.
+				</div>
+				
+				<div th:if="${session.alert}" th:class="${session.alert.type}"
+					role="alert" th:text="${session.alert.message}"></div>
+				
+				<div th:if="${param.logout}" class="alert alert-success">
+					You have been successfully logged out.
+				</div>
+				
+				<form method="post" th:action="@{/signin}">
+					<!-- Email input -->
+					<div class="form-outline mb-4">
+						<input type="email" name="username" id="form1Example1" class="form-control" /> <label
+							class="form-label" for="form1Example1">Email address</label>
+					</div>
+
+					<!-- Password input -->
+					<div class="form-outline mb-4">
+						<input type="password" name="password" id="form1Example2" class="form-control" />
+						<label class="form-label" for="form1Example2">Password</label>
+					</div>
+
+					<!-- 2 column grid layout for inline styling -->
+					<div class="row mb-4">
+					<div class="col">
+							Not a member?
+							<a th:href="@{/register}">Register now.</a>
+						</div>
+
+						<div class="col">
+							<!-- Simple link -->
+							<a th:href="@{/forgot-password}" href="#!">Forgot password?</a>
+						</div>
+					</div>
+
+					<!-- Submit button -->
+					<button type="submit" class="btn bg-primary text-white btn-block">Sign
+						in</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

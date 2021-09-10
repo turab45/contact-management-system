@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}"></title>
+</head>
+<body>
+
+	<section>
+		<div  class="container ml-auto" style="margin-top: 6rem;">
+
+
+			<div th:if="${contact}" class="col" style="width: 50%; margin: auto;">
+
+				<div th:if="${session.alert}" th:class="${session.alert.type}" role="alert"
+									th:text="${session.alert.message}"></div>
+
+				<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+				<h5 class="text-center">Contact Details</h5>
+					<img src="#" th:src="@{'/img/'+${contact.image}}"
+						class="card-img-top profile_image" alt="Contact Image"
+						style="object-fit: contain;" />
+					<div class="card-body">
+
+
+
+						<table style="width: 100%">
+							<tr>
+								<th>Name:</th>
+								<td th:text="${contact.name}">name</td>
+							</tr>
+							<tr>
+								<th>Phone No:</th>
+								<td th:text="${contact.phone}">mobile no</td>
+							</tr>
+							<tr>
+								<th>Email:</th>
+								<td th:text="${contact.email}">email</td>
+							</tr>
+							<tr>
+								<th>Job</th>
+								<td th:text="${contact.work}">job title</td>
+							</tr>
+							<tr>
+								<th>Description</th>
+								<td th:text="${contact.description}">Description</td>
+							</tr>
+						</table>
+
+					</div>
+					<div class="card-footer text-muted">
+						<a th:onclick="|deleteContact(${contact.id})|"
+							class="btn btn-danger btn-block text-white">Delete Contact</a>
+						<!-- update -->
+						<a th:href="@{'/user/contact/update/'+${contact.id}}"
+							class="btn bg-primary btn-block text-white">Update Contact</a>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		
+	</section>
+
+</body>
+</html>

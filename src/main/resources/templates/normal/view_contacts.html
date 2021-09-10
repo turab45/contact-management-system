@@ -1,0 +1,84 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}"></title>
+</head>
+<body>
+
+	<section>
+
+
+		<div class="container" style="margin-top: 6rem;">
+			<h1 class="text-center mb-5">My Contacts</h1>
+
+			<div class="search-container mb-2" style="width:50%">
+				<input type="search" id="search" onkeyup="search()" class="form-control"
+					placeholder="Search your contact. " aria-label="Search" />
+					
+					<div class="search-result">
+					<h1>wegwdf</h1>
+					<h1>sdgsdg</h1>
+					<h1>sgdsdg</h1>
+					<h1>sgsdg</h1>
+					<h1>sgg</h1>
+					</div>
+			</div>
+			<div class="row row-cols-1 row-cols-md-4 g-4">
+
+
+				<div th:each="c : ${contacts}" class="col">
+
+					<div class="card shadow-sm p-3 mb-5 bg-white rounded">
+						<img src="#" th:src="@{'/img/'+${c.image}}"
+							class="card-img-top profile_image" alt="Contact Image" />
+						<div class="card-body">
+							<h5 class="card-title">
+								<a th:href="@{'/user/contact/'+${c.id}}" th:text="${c.name}"></a>
+							</h5>
+
+
+							<table style="width: 100%">
+								<tr>
+									<th><i class='bx bx-phone'></i></th>
+									<td th:text="${c.phone}">mobile no</td>
+								</tr>
+								<tr>
+									<th><i class='bx bx-mail-send'></i></th>
+									<td th:text="${c.email}">email</td>
+								</tr>
+								<tr>
+									<th><i class='bx bxs-user-badge'></i></th>
+									<td th:text="${c.work}">job title</td>
+								</tr>
+							</table>
+
+						</div>
+						<div class="card-footer text-muted">
+							<a th:onclick="|deleteContact(${c.id})|"
+								class="btn btn-danger btn-block text-white">Delete Contact</a>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>
+
+
+
+
+
+
